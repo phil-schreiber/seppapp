@@ -1,0 +1,176 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+	padding:0;
+	margin:0;
+}
+
+.clearer{
+	clear:both;
+}
+
+body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:15px;
+	color:#666666;
+}
+
+h1 {
+	font-size:18px;
+}
+
+h2 {
+	font-size:14px;
+}
+
+h3 {
+font-size:14px;
+}
+
+ul{
+	list-style:none;
+}
+	
+a img {
+	border:none;
+}
+#align-wrap{
+	width:1000px;
+	text-align:center;
+	margin:0 auto 0 auto;
+	position:relative;
+
+}
+
+#main-wrap{
+	width:1000px;
+	float:left;
+	text-align:left;
+	margin-top:50px;
+}
+
+#left-content{
+	width:499px;
+	border-right:#0b55f7 1px solid;
+	float:left;
+	margin-top:150px;
+
+}
+
+#right-content{
+	width:500px;
+	float:left;
+	margin-top:150px;
+
+}
+
+#right-content div , #left-content div{
+	margin-left:auto;
+	margin-right:auto;
+	width:200px;
+	height:100px;
+	
+
+}
+
+.start-button {
+	float:left;
+	width:200px;
+	height:85px;
+	display:block;
+	background:url(../images/bg-button-start.png) no-repeat left top;
+	text-align:center;
+	padding-top:15px;
+	color:#fff;
+
+}
+
+.delete, .add, .edit {
+	cursor:pointer;
+	width:20px;
+	height:20px;
+	display:block;
+	background:url(../images/icon-sprite.png) no-repeat -20px top;
+}
+
+.edit{
+	background:url(../images/icon-sprite.png) no-repeat -40px top;
+}
+.add{
+	background:url(../images/icon-sprite.png) no-repeat left top;
+}
+
+.add-item {
+	float:right;
+	margin-top:20px;
+}	
+
+.addlayer {
+	width:300px;
+	position:absolute;
+	background:#666666;
+	border:#000000 1px solid;
+	height:200px;
+	z-index:99;
+	top:100px;
+	left:100px;
+	color:#fff;
+}
+
+.form {
+	padding:20px 5px 10px 5px;
+}
+
+.form label {
+	float:left;
+	margin-right:5px;
+	width:50px;
+}
+
+.form input {
+	float:left;
+	border:#000000 1px solid;
+	width:150px;
+	margin-bottom:10px;
+}
+
+.form select {
+	float:left;
+}
+
+#addsave,#done {
+	cursor:pointer;
+	margin-right:5px;
+	width:100px;
+}
+.accordion-container {
+	float:left;
+}
+#footer	{
+	float:left;
+	width:100%;
+	display:block;
+}
+
+table.statisticstable{
+	border-collapse:collapse;
+}
+.statisticstable td {
+	padding:5px;
+	border:1px solid;
+}
+
+#chartdiv1{
+float:left;
+	height:500px;
+	width:400px;
+}
+
+#chartdiv2 {
+float:left;
+
+	height:500px;
+	width:400px;
+	margin-top:30px;
+}

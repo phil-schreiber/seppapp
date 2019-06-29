@@ -1,0 +1,139 @@
+{{ define "Input" }}
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Unbenanntes Dokument</title>
+<link href="/static/css/styles.css" rel="stylesheet" type="text/css"  />
+<link rel="stylesheet" type="text/css" href="/static/css/jquery-ui-1.8.6.custom.css" media="screen" />
+<script src="/static/js/jquery-1.4.4.js" type="text/javascript"></script>
+<script src="/static/js/jquery-ui-1.8.6.custom.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+	jQuery(document).ready(function(){
+			init();
+	});
+	
+	function init(){
+		jQuery('.accordion-container').accordion();
+		jQuery('.add').click(function(){
+			jQuery('.addlayer').fadeIn();
+			jQuery('#done').click(function(){
+								jQuery('.addlayer').fadeOut(function(){});
+								});
+			jQuery('#addsave').click(function(){
+			var formdata=jQuery("#addform").serialize();
+			formdata='&type=482&no_cache=1&'+formdata;		
+
+			jQuery.ajax({
+				url: '/update',
+				cache: false,
+				data: formdata,
+				type: 'POST',
+				success: function(data) {
+					if(data==1){
+							alert('Wurde gespeichert');
+							jQuery('#done').click(function(){
+								jQuery('.addlayer').fadeOut(function(){
+									setTimeout("location.reload();", 100); 
+									
+								});
+							});
+					}					
+				},
+				error: function(){
+					alert("Da ist was schief gegangen. Ruf an, ich schau mal nach!");
+				}
+			});	
+			});
+		});
+		jQuery('.delete').click(function(){
+			var idstrng=jQuery(this).attr("id");
+			var idarray=idstrng.split('-');
+			var itemid=idarray[1];
+			deletedata='&type=484&no_cache=1&itemid='+itemid;
+			jQuery.ajax({
+				url: '###PATH###',
+				cache: false,
+				data: deletedata,
+				type: 'POST',
+				success: function(data) {
+					if(data==1){
+							alert('Wurde gelöscht');
+							
+									setTimeout("location.reload();", 100); 
+									
+							
+					}					
+				},
+				error: function(){
+					alert("Da ist was schief gegangen. Ruf an, ich schau mal nach!");
+				}
+			});	
+
+			
+		});
+	}
+/* ]]> */
+</script>
+</head>
+
+<body>
+
+<div id="align-wrap">
+<div id="main-wrap">
+	<div class="accordion-container">
+    	{{ range . }}
+        	<h3>{{ .Year }}</h3>
+            <div class="accordion-element">
+            	<table>
+                	{{ range .OilUsageItems }}
+                	<tr>
+                    	<td>{{ .Quantity }} liter&nbsp;&nbsp;&nbsp;zu&nbsp;&nbsp;</td><td>{{ .Price }} Euro&nbsp;&nbsp;&nbsp;</td><td><span class="delete" id="BT-{{ .UID }}" title="Diesen Eintrag löschen"></span></td><!--<td><span class="edit" title="Diesen Eintrag bearbeiten"></span></td>-->
+                    </tr>
+                    {{ end }}
+                </table>
+            </div>
+		{{ end }}
+    </div>
+    <div class="clearer"></div>
+    <div id="footer">
+    <div class="add-item">
+    	<span class="add" title="Daten hinzufügen"></span>
+    </div>
+    <div class="clearer"></div>
+     <div class="add-item">
+    <a href="/data"><span class="start-button">Statistiken<br />
+ anzeigen</span></a>
+	 </div>
+     <div class="clearer"></div>
+    <div class="add-item">
+    	<a href="/">Zur Startseite</a>
+    </div>
+	</div>
+</div>
+<div class="addlayer" style="display:none">
+	<form class="form" id="addform">
+    <label for="add-year">Jahr</label>
+	<input type="text" name="add-year" id="add-year"/><br /><br />
+       <label for="add-price">Preis</label>
+	<input type="text" name="add-price" id="add-price"/>
+<select id="add-currency" name="add-currency">
+	<option value="0">Euro</option>
+   	<option value="1">D-Mark</option>
+</select><br /><br />
+
+
+
+    <label for="add-quantity">Menge</label>
+	<input type="text" name="add-quantity" id="add-quantity"/>
+    <input type="button" value="Speichern" id="addsave" />
+    <input type="button" value="Fertig" id="done" />
+
+    </form>
+</div>
+</div>
+
+</body>
+</html>
+{{ end }}
